@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Client, GatewayIntentBits, Message } from "discord.js";
+import { Client, CommandInteraction, GatewayIntentBits, Message, SlashCommandBuilder } from "discord.js";
 import * as fs from 'fs';
 import * as http from 'http';
 
@@ -42,6 +42,15 @@ client.on('messageCreate', (message: Message) => {
         message.reply(`ちょっと待って❗️❗️❗️✋️\nそれ、チクチク言葉じゃない❓️\n平和なチャットを心がけるようにしましょう😉\n\n＜検出したNGワード＞\n${words}`);
     }
 });
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('niconico')
+        .setDescription('おすすめの動画を教えてくれます'),
+    async execute(interaction: CommandInteraction) {
+        await interaction.reply('https://www.nicovideo.jp/watch/sm41656368');
+    }
+}
 
 const token = process.env.DISCORD_BOT_TOKEN;
 client.login(token);
