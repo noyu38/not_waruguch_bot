@@ -22,11 +22,10 @@ const niconicoCommand = new SlashCommandBuilder()
     .setDescription('おすすめの動画を教えてくれます');
 
 const rakutan = new SlashCommandBuilder()
-    .setName('必修落単')
+    .setName('rakutan')
     .setDescription('2年後期で必修落単！？')
 
-const commands = [niconicoCommand.toJSON()];
-commands.push(rakutan.toJSON());
+const commands = [niconicoCommand.toJSON(), rakutan.toJSON()];
 
 const token = process.env.DISCORD_BOT_TOKEN;
 
@@ -74,7 +73,7 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.commandName === 'niconico') {
         await interaction.reply('https://www.nicovideo.jp/watch/sm41656368');
-    } else if (interaction.commandName === '必修落単') {
+    } else if (interaction.commandName === 'rakutan') {
         const imageFile = new AttachmentBuilder('./必修落単.jpg');
 
         await interaction.reply({
