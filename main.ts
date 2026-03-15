@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Client, CommandInteraction, GatewayIntentBits, Message, REST, Routes, SlashCommandBuilder } from "discord.js";
+import { AttachmentBuilder, Client, CommandInteraction, GatewayIntentBits, Message, REST, Routes, SlashCommandBuilder } from "discord.js";
 import * as fs from 'fs';
 import * as http from 'http';
 
@@ -21,7 +21,12 @@ const niconicoCommand = new SlashCommandBuilder()
     .setName('niconico')
     .setDescription('おすすめの動画を教えてくれます');
 
+const rakutan = new SlashCommandBuilder()
+    .setName('必修落単')
+    .setDescription('2年後期で必修落単！？')
+
 const commands = [niconicoCommand.toJSON()];
+commands.push(rakutan.toJSON());
 
 const token = process.env.DISCORD_BOT_TOKEN;
 
@@ -69,6 +74,13 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.commandName === 'niconico') {
         await interaction.reply('https://www.nicovideo.jp/watch/sm41656368');
+    } else if (interaction.commandName === '必修落単') {
+        const imageFile = new AttachmentBuilder('./必修落単.jpg');
+
+        await interaction.reply({
+            content: '必修落単！？',
+            files: [imageFile]
+        });
     }
 });
 
