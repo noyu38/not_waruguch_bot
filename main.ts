@@ -30,7 +30,7 @@ const rakutan = new SlashCommandBuilder()
 
 const commands = [niconicoCommand.toJSON(), rakutan.toJSON()];
 
-const token = process.env.DISCORD_BOT_TOKEN;
+const token = process.env.DISCORD_BOT_TOKEN?.trim();
 
 const textData = fs.readFileSync('waruguchi.txt', 'utf-8');
 const ngWords: string[] = textData
@@ -87,6 +87,8 @@ client.on('interactionCreate', async (interaction) => {
         });
     }
 });
+client.on('debug', (info) => console.log(`[DEBUG] ${info}`));
+
 console.log(`3. Discordへの接続を開始します。(トークン状態: ${token ? 'セットされています' : '空っぽです！やりませんねスギィ！'})`);
 client.login(token).catch(e => {
     console.error("ログインに失敗しました。");
