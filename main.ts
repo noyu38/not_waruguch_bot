@@ -3,10 +3,13 @@ import { AttachmentBuilder, Client, CommandInteraction, GatewayIntentBits, Messa
 import * as fs from 'fs';
 import * as http from 'http';
 
+console.log("1. プログラムの読み込みを開始しました");
 http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Bot is running!\n');
-}).listen(process.env.PORT || 3000);
+}).listen(process.env.PORT || 3000, () => {
+    console.log("2. サーバー起動");
+});
 
 // 権限の設定
 const client = new Client({
@@ -84,7 +87,7 @@ client.on('interactionCreate', async (interaction) => {
         });
     }
 });
-
+console.log(`3. Discordへの接続を開始します。(トークン状態: ${token ? 'セットされています' : '空っぽです！やりませんねスギィ！'})`);
 client.login(token).catch(e => {
     console.error("ログインに失敗しました。");
     console.error(e);
