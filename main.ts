@@ -1,4 +1,7 @@
 import 'dotenv/config';
+import * as dns from 'node:dns';
+dns.setDefaultResultOrder('ipv4first');
+
 import { AttachmentBuilder, Client, CommandInteraction, GatewayIntentBits, Message, REST, Routes, SlashCommandBuilder } from "discord.js";
 import * as fs from 'fs';
 import * as http from 'http';
