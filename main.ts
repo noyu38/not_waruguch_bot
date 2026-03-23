@@ -85,4 +85,7 @@ client.on('interactionCreate', async (interaction) => {
     }
 });
 
-client.login(token);
+client.login(token).catch(e => {
+    console.error("ログインに失敗しました。");
+    console.error(e);
+});
