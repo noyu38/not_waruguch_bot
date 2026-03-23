@@ -90,7 +90,6 @@ client.on('interactionCreate', async (interaction) => {
         });
     }
 });
-client.on('debug', (info) => console.log(`[DEBUG] ${info}`));
 
 console.log(`3. Discordへの接続を開始します。(トークン状態: ${token ? 'セットされています' : '空っぽです！やりませんねスギィ！'})`);
 client.login(token).catch(e => {
