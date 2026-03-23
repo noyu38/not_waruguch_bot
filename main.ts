@@ -74,9 +74,11 @@ client.on('interactionCreate', async (interaction) => {
     if (interaction.commandName === 'niconico') {
         await interaction.reply('https://www.nicovideo.jp/watch/sm41656368');
     } else if (interaction.commandName === 'rakutan') {
+        await interaction.deferReply();
+
         const imageFile = new AttachmentBuilder('./必修落単.jpg');
 
-        await interaction.reply({
+        await interaction.editReply({
             content: '必修落単！？',
             files: [imageFile]
         });
